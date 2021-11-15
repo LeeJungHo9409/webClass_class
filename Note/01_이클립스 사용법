@@ -1,0 +1,31 @@
+				
+	
+	01_이클립스 사용법.txt
+
+
+  # JDK 설치
+  	- 구글에 JDK 검색
+  	- 최신 버전으로 다운로드
+  	- 설치할 때 설치 위치를 기억해둘 것
+  
+  # Eclipse 설치
+	- 구글에 eclipse 검색
+	- 운영체제 맞춰서 다운로드
+	- 설치
+	
+  # 이클립스 새 프로젝트 만들기
+  	- 우측상단 Perspective가 Java인지 확인
+  	- File -> New -> Java Project
+  	- 프로젝트명 입력
+  	- Create module-info.java 체크 해제 후 finish
+  
+  # 새 소스 코드 만들기
+  	- src 폴더 또는 원하는 패키지에 우클릭 -> New -> Class 선택
+  	- 원하는 클래스명(파일명)을 입력 후 생성
+  
+  # Workspace 변경
+  	- File -> Switch Workspace 선택
+  	
+  # 실수로 무언가를 닫아버렸을 때
+  	- Window -> Show View에서 닫은 창을 다시 열기
+  	- 닫았던 창이 없다면 Others에서 찾아보기

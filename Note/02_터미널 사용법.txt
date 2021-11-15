@@ -1,0 +1,12 @@
+02_터미널 사용법.txt
+
+  # 터미널 실행
+  	- [Win] + R -> cmd
+  	
+  # 터미널 명령어들
+  	- cd : change directory, 디렉토리 변경
+  	- dir : 현재 위치의 모든 파일 및 디렉토리 목록 보기
+  	- java : 자바로 .class 파일을 실행하기
+  	- javac : 자바 컴파일러로 .java 파일을 컴파일하기 (.class파일 생성)
+  	- del : 파일 삭제
+  	- move : 파일 이동

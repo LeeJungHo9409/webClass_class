@@ -2,7 +2,7 @@ package quiz;
 
 import java.util.Scanner;
 
-public class B07_CheckAlpha {
+public class B06_CheckAlpha {
 
 	public static void main(String[] args) {
 		// TODO 자동 생성된 메소드 스텁

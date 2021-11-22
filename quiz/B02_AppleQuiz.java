@@ -1,3 +1,4 @@
+package quiz;
 import java.util.Scanner;
 
 public class B02_AppleQuiz {

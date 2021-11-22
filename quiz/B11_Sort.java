@@ -8,7 +8,7 @@ public class B11_Sort {
 	public static void main(String[] args) {
 		// TODO 자동 생성된 메소드 스텁
 		
-		int i,j,temp=0, min_num=0, min=99999, random;
+		int i,j,temp=0, min=99999, random;
 		int[] sort_1 = new int[10];
 		int[] sort_2 = new int[10];
 		

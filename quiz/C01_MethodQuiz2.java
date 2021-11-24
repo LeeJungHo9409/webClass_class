@@ -24,10 +24,16 @@ public class C01_MethodQuiz2 {
 	//최소값부터 최대값 미만의 모든 정수값을 포함하는 int 배열을 생성 반환
 	public static int[] range(int min, int max) {
 		
-		int[] arr= new int[max-min];
+		int[] arr= new int[Math.abs(max-min)];
+		int temp;
+		if(max < min) {
+			temp = max;
+			max = min;
+			min = temp;
+		}
 		
-		for(int i=0; i<max-min; i++) {
-			arr[i] = i+min;
+		for(int i=0; i<Math.abs(max-min); i++) {
+			arr[i] = max<min ? Math.abs(i-min) : i+min;
 		}
 		
 		return arr;
@@ -40,11 +46,20 @@ public class C01_MethodQuiz2 {
 		
 		int[] arr;
 		int count=0;
-		for(int i = 0; i<max-min; i+=up, count++) {}
+		int temp;
+		if(max < min) {
+			temp = max;
+			max = min;
+			min = temp;
+		}
+		
+		up = up <= 0 ? Math.abs(up) : up; 
+		
+		for(int i = 0; i<Math.abs(max-min); i+=up, count++) {}
 		arr = new int[count];
 		count = 0;
-		for(int i = 0; i<max-min; i+=up, count++) {
-			arr[count] = i+min;
+		for(int i = 0; i<Math.abs(max-min); i+=up, count++) {
+			arr[count] = max<min ? Math.abs(i-min) : i+min;
 		}
 		
 		return arr;

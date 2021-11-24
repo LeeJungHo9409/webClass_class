@@ -129,7 +129,9 @@ class GamePlay{
 			}else if(gameDetaArr[playerKnife-1] == 0) {
 				System.out.printf("%d 번째는 안됩니다.\n※다른 플레이어가 선택한 홈입니다.※\n다른 홈을 선택 해주세요.\n", playerKnife);
 				continue;
-			}else if(gameDetaArr[playerKnife-1] == firstLose || gameDetaArr[playerKnife-1] == firstLose) {
+			}
+			
+			if(gameDetaArr[playerKnife-1] == firstLose || gameDetaArr[playerKnife-1] == firstLose) {
 				System.out.printf("%d 번째 선택 하셨습니다.", playerKnife);
 				System.out.println(" 통 통 통!\n아저씨가 튕겨져 나왔습니다!");
 				System.out.println("GameOver");

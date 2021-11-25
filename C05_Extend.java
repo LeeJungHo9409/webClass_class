@@ -51,6 +51,8 @@ public class C05_Extend {
 		
 		f1.sayHi();
 		f1.dispatch("이젠컴퓨터학원");
+		
+		popo1.sayHi();
 	}
 }
 
@@ -86,6 +88,10 @@ class FireFighter extends Person{
 class Police extends Person{
 	public Police() { super("김경찰", 25); }
 	public Police(String name, int age) { super(name, age); }
+	
+	@Override
+	void sayHi() { System.out.println("영장 나왔습니다."); }
+	
 	public void arrest(Person supect) {
 		//this는 같은 클래스 안에 this가 가르키는 변수가 없을 경우 부모의 변수를 가르키게됨.
 		System.out.printf("%s 경찰관은 용의자 %s 씨를 체포했습니다.\n",this.name, supect.name);

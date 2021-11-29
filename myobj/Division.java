@@ -1,15 +1,20 @@
 package myobj;
 
 public class Division extends Number{
-	int total=0;
-	public Division() { 
-		total = this.num1/this.num2;
+	double total;
+	
+	public Division() {
+		if(num1 < num2) {
+			this.total = (double)(num2/num1);
+		}else {
+			this.total = (double)(num1/num2);
+		}
 	}
 	
 	@Override
 	void info() {
-		System.out.println("±Ùµ¥ ³ª´°¼ÀÀÌ ÀÌ»óÇØ!");
-		System.out.printf("ÃÑÇÕ : %d\n",total);
+		// TODO ÀÚµ¿ »ý¼ºµÈ ¸Þ¼Òµå ½ºÅÓ
+		System.out.printf("%.2f\n", this.total);
 	}
 
 }

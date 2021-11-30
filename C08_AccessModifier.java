@@ -21,8 +21,7 @@ public class C08_AccessModifier extends C08_DiffPackageClass{
 	public void test() {
 		//다른 패키지에서 상속받아서 사용할 때 접근할 수 있는 자원 : public, protected
 		//다른 패키지에서 상속받아서 사용할 때 접근할 수 없는 자원 : default, private
-		System.out.println("패키지 "
-				+ "상속");
+		System.out.println("패키지 상속");
 		System.out.println(super._protected_var);
 		System.out.println(super._public_var);
 	}

@@ -1,7 +1,5 @@
 package quiz;
 
-import Password.Password;
-
 /*
  	# 올바른 패스워드를 만들기 위한 규칙
  		
@@ -18,6 +16,6 @@ import Password.Password;
 
 public class C15_InputRightPassword {
 	public static void main(String[] args) {
-		new Password();
+		//new Password();
 	}
 }

@@ -100,6 +100,7 @@ class PhoneBook implements Comparable<PhoneBook>{
 					break;
 				case 3:
 					//원하는 값으로 정렬 후 검색
+					hashMapValue();
 					break;
 				default:
 					return;
@@ -111,8 +112,12 @@ class PhoneBook implements Comparable<PhoneBook>{
 		}
 		
 		for(Grup grup : grups) {
-			System.out.printf("[그룹명 : %s] %s\n",GRUPS_NAMES[this.grup],grup);
+			System.out.printf("[그룹명 : %s] %s\n", GRUPS_NAMES[g.grup],grup);
 		}
+	}
+	
+	public void hashMapValue() {
+		System.out.println(grupMap.get("가족"));
 	}
 	
 	public void numberSet(int number) {

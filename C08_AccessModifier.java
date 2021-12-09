@@ -1,5 +1,3 @@
-import myobj.C08_DiffPackageClass;
-
 /*
 	# 접근 제어자 (Access Modifier) 
 	  다른 클래스에서 해당 클래스의 자원을 활용하려고 할 때, 허용 범위를 설정한다.

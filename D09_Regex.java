@@ -1,3 +1,4 @@
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class D09_Regex {
@@ -79,9 +80,26 @@ public class D09_Regex {
 		System.out.println(Pattern.matches("abc\\d*", "abc111"));
 		
 		//연습문제 : 해당 문자열이 핸드폰 번호인지 검사할 수 있는 경규표현식을 만들어보세요
-		System.out.println(Pattern.matches("010\\-\\d{4}\\-\\d{4}", "010-12A4-1234") ? "핸드폰 번호 입니다." : "핸드폰 번호 형식이 틀립니다.");
+		System.out.println(Pattern.matches("010\\-\\d{4}\\-\\d{4}", "010-1224-1234") ? "핸드폰 번호 입니다." : "핸드폰 번호 형식이 틀립니다.");
 		//연습문제 : 해당 문자열이 이메일인지 검사할 수 있는 경규표현식을 만들어보세요
-		System.out.println(Pattern.matches("\\w+@\\w+\\.[a-z]+","dssdf123@na12r.com") ? "이메일입니다." : "이메일이 아닙니다.");
+		System.out.println(Pattern.matches("\\w+@\\w+\\.[a-zA-Z]+(\\.?[a-zA-Z]+)*","dssdf123@na12r.co#") ? "이메일입니다." : "이메일이 아닙니다.");
+		
+		// Matcher 클래스로 긴 문자열 검사하기
+		String fruits = "apple/banana/kiwi/mango/pineapple/redapple/greenapple/apple";
+		
+		// 1. 원하는 정규표현식을 컴파일하여 인스턴스를 생성
+		Pattern pattern = Pattern.compile("apple");
+		// 2. 컴파일 한 정규표현식으로 원하는 문자열을 검사하기 위한 Matcher 인스턴스가 반환된다.
+		Matcher matcher = pattern.matcher(fruits);
+		
+		// 3. matcher를 이용해 검사를 진행한다.
+		if(matcher.find()) {
+			System.out.println("-----------------------------");
+			System.out.println("찾은것: " + matcher.group());
+			System.out.println("찾은것의 시작 위치 : " + matcher.start());
+			System.out.println("찾은것의 마지막 위치 : " + matcher.end());
+		}
+		
 		
 	}
 

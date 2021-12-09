@@ -13,7 +13,6 @@ import java.util.Set;
 		HashSet, HashMap, Colloction, compare, compareTo, ArrayList
  */
 
-
 public class D07_PhoneBook_t {
 	
 	static HashMap<String, Comparator> comparators = new HashMap<>();
@@ -178,6 +177,7 @@ public class D07_PhoneBook_t {
 }
 
 class Info{
+	
 	String name, tel, group;
 	int age;
 	public Info(String name, String tel, int age, String group) {

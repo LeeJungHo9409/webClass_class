@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import quiz.rsp.GameRecord;
+import quiz.rsp.Rule;
+
 public class E03_SaveGame {
 	
 	/*
@@ -43,7 +46,7 @@ public class E03_SaveGame {
 			}
 			
 			gr.fileOut(round, rule);
-			gr.fileInput(round, rule);
+			gr.fileInput(round);
 			round = rule.setGame();	
 		}
 		

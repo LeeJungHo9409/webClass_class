@@ -36,7 +36,5 @@ public class E03_File {
 		//isDirectory() : 해당 경로의 파일이 디렉토리인지 검사
 		System.out.println(f1.isDirectory());
 		System.out.println(f1.isFile());
-		
-		
 	}
 }

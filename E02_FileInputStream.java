@@ -35,7 +35,7 @@ public class E02_FileInputStream {
 			
 			// 연습 : byte[] 방식으로 모든 파일의 내용을 출력할 수 있는 반복문 작성
 			int len;
-			byte[] buffer = new byte[23];
+			byte[] buffer = new byte[20];
 			while ((len = fileInput.read(buffer))!=-1) {
 				System.out.print(new String(buffer, 0, len));
 			}

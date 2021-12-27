@@ -22,16 +22,16 @@ public class Copy {
 		File copyFold = new File(copyStr);
 		File[] files = fold.listFiles();
 		
-		if(!copyFold.exists() || !fold.exists()) {
-			fold.mkdir();
+		if(!copyFold.exists()) {
 			copyFold.mkdir();
 		}
 		
 		for(File file : files) {
-			if(file.isDirectory()) {		
-				copy(str + "/" + file.getName(), copyStr + "/" + file.getName()+"_copy");
-//			}else if(file.toString().contains(".jpg")) {
-//				System.out.println("jpg");
+			if(file.isDirectory()) {
+				copy(str + "\\" + file.getName(), copyStr + "\\" + file.getName()+"_copy");
+			}else if(file.getName().contains(".jpg")) {
+				// characterStream 은 문자타입으로 전송하기에 당연히 안된다.
+				// 하지만 byte로 전달되면 가능하다.
 			}else {
 				try (FileReader fr = new FileReader(file, Charset.forName("UTF-8"));){
 					int len;
@@ -49,7 +49,6 @@ public class Copy {
 					e1.printStackTrace();
 				}
 				
-				System.out.println();
 			}
 		}
 	}

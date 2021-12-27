@@ -928,7 +928,7 @@ public class D09_RegexEmail {
 		ArrayList<String> emails = new ArrayList<>();
 		HashMap<String, Integer> emailMap = new HashMap<>();
 		
-		String[] arr = EMAILS.split("\n");
+		String[] arrs = EMAILS.split("\n");
 		
 		Matcher matcher;
 		int startNum = 0;
@@ -984,6 +984,8 @@ public class D09_RegexEmail {
 			System.out.println(domain);
 		}
 	}
+	
+	
 }
 
 class Domain implements Comparable<Domain>{

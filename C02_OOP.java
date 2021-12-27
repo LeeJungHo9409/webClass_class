@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -199,24 +200,5 @@ class HyundaiCarSolid{
 	}
 }
 
-//class Apple{
-///*
-//	# 인스턴스 변수
-//	  - 클래스 내부에 선언한 변수
-//	  - 각 인스턴스마다 값이 다를 수 있는 변수
-//	  - aka. 필드, 속성, 멤버 변수, 멤버, 상태
-//*/
-//  
-//int size;
-//int calorie;
-//int sweet;
-//int price;
-//char grade;
-//
-//
-//void eat() {
-//	size--;
-//	calorie-=10;
-//}
-//}
+
 

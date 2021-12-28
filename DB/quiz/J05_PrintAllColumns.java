@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import DB.DBConnector;
 
@@ -36,29 +37,94 @@ public class J05_PrintAllColumns {
 			
 			int len;
 			
-			for(int col = 1; col <= mata.getColumnCount(); col++) {
-				len = mata.getColumnDisplaySize(col);
-				//System.out.print(len + " ");
-				System.out.printf("%"+ mata.getColumnDisplaySize(col) +"s|", mata.getColumnLabel(col));
-				System.out.printf("%d", len - mata.getColumnLabel(col).length());
+			//------------------------강사님 코딩------------------------------
+			int colSize = mata.getColumnCount();
+			
+			Column[] cols = new Column[colSize];
+			for(int i = 0; i<colSize; ++i) {
+				cols[i] = new Column(mata.getColumnName(i+1));
+			}
+			
+			while(rs.next()) {
+				for(int i = 0; i<colSize;++i) {
+					cols[i].content.add(rs.getObject(i+1));
+				}	
+			}
+			
+			// 알맞은 columndisplaySize 계산
+			for(int i = 0; i<colSize; ++i) {
+			 	cols[i].update();
+			}
+			
+			int rowsize = cols[0].content.size()+2;
+			
+			for(int i = 0; i< rowsize; ++i) {
+				for(int j = 0; j<cols.length; ++j) {
+					if(i==0) {
+						System.out.printf("%-"+cols[j].columnDisplaySize+"s|",cols[j].columnName + "\t");
+					}else if(i == 1){
+						for(int cds = 0; cds <= cols[j].columnDisplaySize; ++cds) {
+							if(cds == cols[j].columnDisplaySize) {
+								System.out.print("┼");
+							}else {
+								System.out.print("─");
+							}
+							
+						}
+						
+					}else{
+						System.out.printf("%-"+cols[j].columnDisplaySize+"s|",cols[j].content.get(i-2) + "\t");
+					}
+				}
+				
+				System.out.println();
+				
+			}
+			
+			//-----------------------------------------------------------
+			
+			/*
+			//------------------- 마이 코딩 ---------------------------
+			for(int col = 1; col <= mata.getColumnCount(); col++) {	
+				System.out.printf("%-20s|", mata.getColumnLabel(col));
 			}
 			
 			System.out.println();
 			
 			while(rs.next()) {
 				for(int col = 1; col <= mata.getColumnCount(); col++) {
-					len = mata.getColumnDisplaySize(col);
-					//int len = Math.abs(mata.getColumnDisplaySize(col) - rs.getString(mata.getColumnLabel(col)).length());
-					//System.out.println((mata.getColumnDisplaySize(col)+len));
-					System.out.printf("%"+ (len- mata.getColumnLabel(col).length()) +"s|", rs.getString(mata.getColumnLabel(col)));
-					//System.out.printf("%d",);
+					System.out.printf("%-20s|", rs.getString(mata.getColumnLabel(col)));
 				}
 				System.out.println();
-			}
+			}*/
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+}
+
+class Column {
+	String columnName;
+	ArrayList<Object> content;
+	int columnDisplaySize;
+	
+	public Column(String columnName) {
+		this.columnName = columnName;
+		this.content = new ArrayList<>();
+	}
+	
+	public void update() {
+		int rowSize = content.size();
+		
+		for(int i = 0; i<content.size() + 1; ++i){
+			int len = String.format("%s", content.get(i)).length();
+			columnDisplaySize = columnDisplaySize < len ? len:columnDisplaySize;
+		}
+		
+		int len = columnName.length();
+		columnDisplaySize = columnDisplaySize < len ? len : columnDisplaySize;
+	}
+	
 }

@@ -30,12 +30,18 @@ public class G03_DiceFrame extends JFrame{
 		
 		//다이스 값 출력 라벨
 		ResultLab resultLab = new ResultLab(0);
+		NumberDice numDice = new NumberDice();
 		
 		//다이스 값 변화를 위한 버튼
-		DiceButton btn = new DiceButton(labs, resultLab);
-		add(btn);
+		DiceButton btn1 = new DiceButton(labs, resultLab, numDice);
+		DiceButton btn2 = new DiceButton(labs, resultLab, numDice);
+		btn2.setLocation(250, 300);
+		add(btn1);
+		add(btn2);
 		add(resultLab);
+		add(numDice);
 		
+		//setResizable(false) : 프레임 크기 고정
 		
 		//JFrame 화면 설정
 		setLayout(null);
@@ -56,14 +62,40 @@ public class G03_DiceFrame extends JFrame{
 	
 }
 
+// 다이스 넘버 숫자 개수
+class NumberDice extends JLabel{
+	String str = "";
+	
+	public NumberDice() {
+		setText("0 / 0 / 0 / 0 / 0 / 0 ");
+		setBounds(140,400,200,60);
+		setHorizontalAlignment(JLabel.CENTER);
+	}
+	
+	public void setTotalNumber(int[] arr) {
+		str = "";
+		for(int i = 0; i<=5; i++) {
+			if(i == 5) {
+				str+=arr[i];
+			}else {
+				str+=arr[i] + " / ";
+			}
+		}
+	}
+	
+	public void getString() {
+		setText(str); 
+	}
+}
+
 // 다이스 값 총합을 위한 라벨
 class ResultLab extends JLabel{
 	
 	//초기화면 설정
 	public ResultLab(int result) {
 		setText(""+result);
-		setSize(60,60);
-		setLocation(0,0);
+		setBounds(0,0,60,60);
+		
 		setHorizontalAlignment(JLabel.CENTER);
 		
 		//보더 값을 줘서 화면 테투리 생성 - lowered 는 안으로 들어가게 보여줌
@@ -71,7 +103,7 @@ class ResultLab extends JLabel{
 	}
 	
 	// 버튼 누르면 변화를 주어야하기에
-	void setResultLab(int result) {
+	public void setResultLab(int result) {
 		setText(""+result);
 	}
 	
@@ -86,9 +118,8 @@ class Dice extends JLabel {
 	//초기 화면 다이스 설정
 	public Dice() {
 		
+		setBounds(x_loca, y_loca, 50, 50);
 		setText(""+1);
-		setSize(50,50);
-		setLocation(x_loca, y_loca);
 		setHorizontalAlignment(JLabel.CENTER);
 		setBorder(new BevelBorder(BevelBorder.LOWERED));
 	}
@@ -114,41 +145,47 @@ class Dice extends JLabel {
 
 class DiceButton extends JButton{
 	
-	public DiceButton(ArrayList<Dice> labs, ResultLab resultLab) {
+	// 뷰기능
+	public DiceButton(ArrayList<Dice> labs, ResultLab resultLab, NumberDice numDice) {
+		
 		setText("DICE GHANGE");
-		setSize(300, 100);
+		setBounds(100,300,150,50);
 		
-		setLocation(100,300);
-		
+		// # Control - 컨트롤(동작)소스와 뷰(화면)소스는 분류를 꼭 해야된다.
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int result = 0;
-				System.out.println();
+				int number;		
+				int[] arr = {0,0,0,0,0,0};
 				for(int i =0; i<labs.size(); i++) {
 					//클릭시 주사위 number 변경
-					labs.get(i).setPointDice((int)((Math.random()*6)+1));
+					number = (int)((Math.random()*6)+1);
+					arr[number-1]++;
+					numDice.setTotalNumber(arr);
+					labs.get(i).setPointDice(number);
+					
+					//클릭시 위치 변경 1
 					labs.get(i).loca();
-					//labs.get(i).setLocation(labs.get(i).getXloca(), labs.get(i).getYloca());
-					System.out.print("[ " + labs.get(i).point + "_" + labs.get(i).x_loca + " / " + labs.get(i).y_loca+"\n");
-					//클릭시 주사위 위치 변경
+					
+					//같은 위치 제외 시키고 위치 변경 2
 					for(int j = 0; j<i; j++) {
 						if((labs.get(i).getXloca() <= (labs.get(j).getXloca()+50) && 
 								(labs.get(i).getXloca() >= (labs.get(j).getXloca()-50))) 
-								&& (labs.get(i).getYloca() <= (labs.get(j).getYloca()+50) && 
-										(labs.get(i).getYloca() >= (labs.get(j).getYloca()-50)))) {
-							System.out.println("1");
-							labs.get(j).loca();
-							j=0;
+								&& ((labs.get(i).getYloca() <= (labs.get(j).getYloca()+50) && 
+										(labs.get(i).getYloca() >= (labs.get(j).getYloca()-50))))) {
+							labs.get(i).loca();
+							j=-1;
 						}
 					}
 					
+					//위치 확정되면 화면에 출력(애 이동)
 					labs.get(i).setLocation(labs.get(i).getXloca(), labs.get(i).getYloca());
-					System.out.print("[ " + labs.get(i).point + "_" + labs.get(i).x_loca + " / " + labs.get(i).y_loca);
-					System.out.print("]\n");
 					
 					//변경된 주사위 값을 텍스트로 표시
 					labs.get(i).setText(""+ labs.get(i).point);
+					
+					numDice.getString();
 					
 					//주사위 값 누적
 					result+=labs.get(i).point;
@@ -157,7 +194,7 @@ class DiceButton extends JButton{
 				//결과값 라벨에 출력위해 결과값 보냄 
 				resultLab.setResultLab(result);
 			}
-		});
+		});	
 	}
 }
 
